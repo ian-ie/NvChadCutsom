@@ -98,8 +98,8 @@ local plugins = {
   -- 加("")
   {
     "kylechui/nvim-surround",
-    event = "InsertEnter",
     version = "*",
+    event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
