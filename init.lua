@@ -6,7 +6,11 @@
 --   command = "tabdo wincmd =",
 -- })
 
-vim.wo.relativenumber = true
+vim.opt.relativenumber = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+
 if vim.fn.exists "g:neovide" then
   -- vim.opt.guifont = { "JeBrains Mono", ":h1}
   vim.g.neovide_transparency = 0.95
