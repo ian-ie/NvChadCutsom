@@ -94,12 +94,12 @@ local plugins = {
     -- 跳转
     {
         "ggandor/leap.nvim",
-        event = "User FileOpened",
+        event = "BufWinEnter",
     },
     -- f增强
     {
         "ggandor/flit.nvim",
-        event = "User FileOpened",
+        event = "BufWinEnter",
         keys = { "f", "F", "t", "T" },
         dependencies = { "ggandor/leap.nvim" },
         config = function()
