@@ -3,12 +3,14 @@ local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    [":"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>q"] = {":q<CR>", "quit"},
     ["<leader>h"] = { ":noh <CR>", "clear highlights" },
+    ["<leader>o"] = { "<cmd>SymbolsOutline<CR>", "outline" },
     ["<leader>gg"] = { "<cmd> LazyGit <CR>", "open Lazygit" },
     ["<leader>fp"] = { "<cmd> Telescope project <CR>", "find project" },
     ["<leader>cd"] = { ":cd %:h <CR>", "cd curfile dir" },
+
     -- leader b
     ["<leader>bo"] = { "<cmd> BufOnly <CR>", "close all buffer but this" },
     ["<leader>bn"] = { "<cmd> enew <CR>", "new buffer" },
@@ -20,9 +22,24 @@ M.general = {
       "close buffer",
     },
 
+    -- leader t
+    ["<leader>tw"] =  { "<Plug>TranslateWV", "pop" },
+    ["<leader>tr"] =  { "<Plug>TranslateRV", "replace" },
+
+    -- leader j
+    ["<leader>jw"] =  { "<Plug>(leap-forward-to)", "forward" },
+    ["<leader>jb"] =  { "<Plug>(leap-backward-to)", "backward" },
+
+    -- leader r
+    ["<leader>rf"] = { "<cmd>%SnipRun<cr>", "file" },
+    ["<leader>rs"] = { "<Plug>SnipRun", "snip" },
+    ["<leader>rc"] = { "<Plug>SnipClose", "close" },
+    ["<leader>rr"] = { "<Plug>SnipReset", "reset" },
+
     ["<A-j>"] = { ":move +1 <CR>", "move down" },
     ["<A-k>"] = { ":move -2 <CR>", "move up" },
   },
+
   i = {
     ["<C-s>"] = { "<ESC> :w<CR>", "save and exit insert mode" },
     ["<A-j>"] = { "<ESC> :move +1 <CR>", "move down" },

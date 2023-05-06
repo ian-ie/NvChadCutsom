@@ -57,7 +57,8 @@ local plugins = {
         f = { name = "file" },
         g = { name = "git" },
         b = { name = "buff" },
-
+        r = { name = "sniprun" },
+        j = { name = "jump" },
       }, { prefix = "<leader>" })
     end,
   },
@@ -75,16 +76,74 @@ local plugins = {
     },
   },
   {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
-    config = function()
-      vim.g.mkdp_auto_start = 1
-    end,
-  },
-  {
     "numtostr/BufOnly.nvim",
     cmd = "BufOnly",
+  },
+  -- 翻译
+  {
+    "voldikss/vim-translator",
+    lazy = false,
+  },
+  -- 代码片段运行
+  {
+    "michaelb/sniprun",
+    build = "bash ./install.sh",
+    cmd = "SnipRun",
+  },
+  -- 跳转
+  {
+    "ggandor/leap.nvim",
+    event = "BufWinEnter",
+  },
+  -- 加("")
+  {
+    "kylechui/nvim-surround",
+    event = "InsertEnter",
+    version = "*",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+  -- 符号信息
+  {
+    "simrat39/symbols-outline.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("symbols-outline").setup {
+        autofold_depth = 0,
+
+        symbols = {
+          File = { hl = "@text.uri" },
+          Module = { hl = "@namespace" },
+          Namespace = { hl = "@namespace" },
+          Package = { hl = "@namespace" },
+          Class = { hl = "@type" },
+          Method = { hl = "@method" },
+          Property = { hl = "@method" },
+          Field = { hl = "@field" },
+          Constructor = { hl = "@constructor" },
+          Enum = { hl = "@type" },
+          Interface = { hl = "@type" },
+          Function = { hl = "@function" },
+          Variable = { hl = "@constant" },
+          Constant = { hl = "@constant" },
+          String = { hl = "@string" },
+          Number = { hl = "@number" },
+          Boolean = { hl = "@boolean" },
+          Array = { hl = "@constant" },
+          Object = { hl = "@type" },
+          Key = { hl = "@type" },
+          Null = { hl = "@type" },
+          EnumMember = { hl = "@field" },
+          Struct = { hl = "@type" },
+          Event = { hl = "@type" },
+          Operator = { hl = "@operator" },
+          TypeParameter = { hl = "@parameter" },
+        },
+      }
+    end,
   },
   -- To make a plugin not be loaded
   -- {
