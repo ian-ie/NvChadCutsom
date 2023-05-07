@@ -4,6 +4,7 @@ local M = {}
 M.general = {
     n = {
         [":"] = { ":", "enter command mode", opts = { nowait = true } },
+        ["<leader>v"] = { ":Nvdash <CR>", "back home" },
         ["<leader>q"] = { ":q<CR>", "quit" },
         ["<leader>h"] = { ":noh <CR>", "clear highlights" },
         ["<leader>o"] = { "<cmd>SymbolsOutline<CR>", "outline" },

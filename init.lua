@@ -12,7 +12,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
 if vim.fn.exists "g:neovide" then
-  -- vim.opt.guifont = { "JeBrains Mono", ":h1}
-  vim.g.neovide_transparency = 0.95
-  vim.g.neovide_cursor_vfx_mode = "ripple"
+    vim.opt.guifont = { "JetBrains Mono", ":h12" }
+    vim.g.neovide_transparency = 0.95
+    vim.g.neovide_cursor_vfx_mode = "ripple"
 end
