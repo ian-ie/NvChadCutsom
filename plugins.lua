@@ -96,7 +96,7 @@ local plugins = {
         "ggandor/leap.nvim",
         event = "VeryLazy",
     },
-    -- f增强
+    -- f 增强
     {
         "ggandor/flit.nvim",
         event = "VeryLazy",
@@ -199,6 +199,26 @@ local plugins = {
         cmd = { "TroubleToggle", "Trouble", "TroubleRefresh" },
         config = function()
             require("trouble").setup()
+        end,
+    },
+    -- 置灰未使用变量
+    {
+        "zbirenbaum/neodim",
+        event = "LspAttach",
+        config = function()
+            require("neodim").setup {
+                alpha = 0.75,
+                blend_color = "#000000",
+                update_in_insert = {
+                    enable = true,
+                    delay = 100,
+                },
+                hide = {
+                    virtual_text = true,
+                    signs = false,
+                    underline = false,
+                },
+            }
         end,
     },
     -- To make a plugin not be loaded

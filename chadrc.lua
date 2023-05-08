@@ -5,19 +5,19 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "decay",
-  theme_toggle = { "decay", "one_light" },
+    theme = "decay",
+    theme_toggle = { "decay", "one_light" },
 
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+    hl_override = highlights.override,
+    hl_add = highlights.add,
 
-  nvdash = {
-    load_on_startup = true,
-  },
+    nvdash = {
+        load_on_startup = true,
+    },
 
-  statusline = {
-    theme = "vscode_colored",
-  },
+    statusline = {
+        theme = "vscode_colored",
+    },
 }
 
 M.plugins = "custom.plugins"

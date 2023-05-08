@@ -65,4 +65,15 @@ M.nvimtree = {
     },
 }
 
+
+M.lspconfig = {
+    n = {
+        ["gl"] = {
+            function()
+                vim.diagnostic.open_float { border = "rounded" }
+            end,
+            "floating diagnostic",
+        },
+    }
+}
 return M
