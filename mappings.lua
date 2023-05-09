@@ -12,6 +12,13 @@ M.general = {
         ["<leader>fp"] = { "<cmd> Telescope project <CR>", "find project" },
         ["<leader>cd"] = { ":cd %:h <CR>", "cd curfile dir" },
 
+        ["<leader>lf"] = {
+            function()
+                vim.lsp.buf.format { async = true }
+            end,
+            "lsp formatting",
+        },
+
         -- leader b
         ["<leader>bo"] = { "<cmd> BufOnly <CR>", "close all buffer but this" },
         ["<leader>bn"] = { "<cmd> enew <CR>", "new buffer" },
@@ -65,7 +72,6 @@ M.nvimtree = {
     },
 }
 
-
 M.lspconfig = {
     n = {
         ["gl"] = {
@@ -74,6 +80,6 @@ M.lspconfig = {
             end,
             "floating diagnostic",
         },
-    }
+    },
 }
 return M

@@ -60,6 +60,7 @@ local plugins = {
                 r = { name = "sniprun" },
                 j = { name = "jump" },
                 t = { name = "trouble" },
+                l = { name = "lsp" },
             }, { prefix = "<leader>" })
         end,
     },
