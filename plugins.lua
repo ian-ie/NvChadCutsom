@@ -226,16 +226,6 @@ local plugins = {
     "spin6lock/vim_sproto",
     ft = "sproto",
   },
-  {
-    "chipsenkbeil/distant.nvim",
-    branch = "v0.2",
-    lazy = false,
-    config = function()
-      require("distant").setup {
-        ["*"] = require("distant.settings").chip_default(),
-      }
-    end,
-  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

@@ -4,8 +4,8 @@ local M = {}
 M.general = {
   n = {
     [":"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["'"] = { "<cmd> Telescope marks <CR>", "marks" },
-    ["\""] = { "<cmd> Telescope registers <CR>", "registers" },
+    ["'"] = { "<cmd>Telescope marks<CR>", "marks" },
+    ["\""] = { "<cmd>Telescope registers<CR>", "registers" },
 
     ["<leader>v"] = { ":Nvdash <CR>", "back home" },
     ["<leader>q"] = { ":q<CR>", "quit" },
@@ -15,6 +15,8 @@ M.general = {
     ["<leader>fp"] = { "<cmd> Telescope project <CR>", "find project" },
     ["<leader>cd"] = { ":cd %:h <CR>", "cd curfile dir" },
 
+    ["<leader>lv"] = {":lua vim.diagnostic.config({ virtual_text = true})<CR>", "open virtual"},
+    ["<leader>lw"] = {":lua vim.diagnostic.config({ virtual_text = false})<CR>", "close virtual"},
     ["<leader>lf"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -23,7 +25,7 @@ M.general = {
     },
 
     -- leader b
-    ["<leader>bo"] = { "<cmd> BufOnly <CR>", "close all buffer but this" },
+    ["<leader>bo"] = { "<cmd> BufOnly <CR>:e<CR>", "close all buffer but this" },
     ["<leader>bn"] = { "<cmd> enew <CR>", "new buffer" },
     ["<leader>bf"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
     ["<leader>bc"] = {

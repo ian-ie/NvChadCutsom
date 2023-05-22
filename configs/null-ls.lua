@@ -17,7 +17,15 @@ local sources = {
 
     -- cpp
     b.formatting.clang_format,
+
+    -- go
+    b.formatting.gofmt,
+    b.formatting.goimports,
+
+    -- rust
+    b.formatting.rustfmt
 }
+
 
 null_ls.setup {
     debug = true,
