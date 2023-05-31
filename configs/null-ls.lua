@@ -9,23 +9,18 @@ local b = null_ls.builtins
 local sources = {
 
     -- webdev stuff
-    b.formatting.deno_fmt,                                                  -- choosed deno for ts/js files cuz its very fast!
-    b.formatting.prettier.with { filetypes = { "html", "markdown", "css" ,"json"} }, -- so prettier works only on these filetypes
+    b.formatting.deno_fmt.with { extra_args = { "--indent-width", 4 } }, -- choosed deno for ts/js files cuz its very fast!
 
     -- Lua
-    b.formatting.stylua,
-
-    -- cpp
-    b.formatting.clang_format,
+    b.formatting.stylua.with { extra_args = { "--indent-width", 4 } },
 
     -- go
     b.formatting.gofmt,
     b.formatting.goimports,
 
     -- rust
-    b.formatting.rustfmt
+    b.formatting.rustfmt,
 }
-
 
 null_ls.setup {
     debug = true,
