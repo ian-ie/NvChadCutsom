@@ -14,6 +14,11 @@ local sources = {
     -- Lua
     b.formatting.stylua.with { extra_args = { "--indent-width", 4 } },
 
+    -- python
+    b.formatting.isort,
+    b.formatting.black,
+    b.diagnostics.mypy,
+
     -- go
     b.formatting.gofmt,
     b.formatting.goimports,

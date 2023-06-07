@@ -16,8 +16,8 @@ M.general = {
         ["<leader>fp"] = { "<cmd> Telescope project <CR>", "find project" },
         ["<leader>cd"] = { ":cd %:h <CR>", "cd curfile dir" },
 
-        ["<leader>lv"] = { ":lua vim.diagnostic.config({ virtual_text = true})<CR>", "open virtual" },
-        ["<leader>lw"] = { ":lua vim.diagnostic.config({ virtual_text = false})<CR>", "close virtual" },
+        ["<leader>lo"] = { ":lua vim.diagnostic.config({ virtual_text = true})<CR>", "open virtual" },
+        ["<leader>lc"] = { ":lua vim.diagnostic.config({ virtual_text = false})<CR>", "close virtual" },
         ["<leader>lf"] = {
             function()
                 vim.lsp.buf.format { async = true }
