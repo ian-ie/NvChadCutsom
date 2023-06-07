@@ -61,6 +61,7 @@ local plugins = {
                 j = { name = "jump" },
                 t = { name = "trouble" },
                 l = { name = "lsp" },
+                L = { name = "leetcode" },
             }, { prefix = "<leader>" })
         end,
     },
@@ -241,12 +242,12 @@ local plugins = {
             }
         end,
         keys = {
-            { "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
-            { "<leader>lv", "<cmd>LBQuestion<cr>", desc = "View Question" },
-            { "<leader>lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
-            { "<leader>lt", "<cmd>LBTest<cr>", desc = "Test Code" },
-            { "<leader>ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
-            { "<leader>ld", "<cmd>LBQuestionOfToday<cr>", desc = "Today Question" },
+            { "<leader>Lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
+            { "<leader>Lv", "<cmd>LBQuestion<cr>", desc = "View Question" },
+            { "<leader>Lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
+            { "<leader>Lt", "<cmd>LBTest<cr>", desc = "Test Code" },
+            { "<leader>Ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
+            { "<leader>Ld", "<cmd>LBQuestionOfToday<cr>", desc = "Today Question" },
         },
     },
     -- To make a plugin not be loaded
