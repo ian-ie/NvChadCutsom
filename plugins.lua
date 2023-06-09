@@ -227,29 +227,24 @@ local plugins = {
         "spin6lock/vim_sproto",
         ft = "sproto",
     },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/neodev.nvim" },
     {
-        "ian-ie/Leetbuddy.nvim",
+        "ian-ie/LeetCode.nvim",
+        dir = "/mnt/d/work/LeetCode.nvim/",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
+            "nvim-telescope/telescope.nvim"
         },
         config = function()
-            require("leetbuddy").setup {
-                domain = "cn",
-                directory = "/mnt/d/work/leetcode/",
-                language = "py",
-            }
+            require("leetcode").setup({})
         end,
         keys = {
-            { "<leader>Lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
-            { "<leader>Lv", "<cmd>LBQuestion<cr>", desc = "View Question" },
-            { "<leader>Lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
-            { "<leader>Lt", "<cmd>LBTest<cr>", desc = "Test Code" },
-            { "<leader>Ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
-            { "<leader>Ld", "<cmd>LBQuestionOfToday<cr>", desc = "Today Question" },
-        },
-    },
+            {"<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode"},
+            {"<leader>Ll", "<cmd>LCList<cr>", desc = "problem list"},
+            {"<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info"},
+            {"<leader>Lr", "<cmd>LCReset<cr>", desc = "rest cod template"}
+        }
+    }
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
