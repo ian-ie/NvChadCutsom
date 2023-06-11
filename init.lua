@@ -5,6 +5,7 @@
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+vim.api.nvim_command("autocmd InsertLeave,CursorMoved * normal! zz")
 
 vim.opt.relativenumber = true
 

@@ -17,7 +17,7 @@ local sources = {
     -- python
     b.formatting.isort,
     b.formatting.black,
-    b.diagnostics.mypy,
+    b.diagnostics.flake8,
 
     -- go
     b.formatting.gofmt,

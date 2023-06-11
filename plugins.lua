@@ -230,7 +230,7 @@ local plugins = {
     { "folke/neodev.nvim" },
     {
         "ian-ie/LeetCode.nvim",
-        dir = "/mnt/d/work/LeetCode.nvim/",
+        dir = "/root/LeetCode.nvim/",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
@@ -242,7 +242,10 @@ local plugins = {
             {"<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode"},
             {"<leader>Ll", "<cmd>LCList<cr>", desc = "problem list"},
             {"<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info"},
-            {"<leader>Lr", "<cmd>LCReset<cr>", desc = "rest cod template"}
+            {"<leader>Ld", "<cmd>LCDay<cr>", desc = "problem of day"},
+            {"<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template"},
+            {"<leader>Lt", "<cmd>LCTest<cr>", desc = "test"},
+            {"<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit"}
         }
     }
     -- To make a plugin not be loaded
