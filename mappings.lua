@@ -4,8 +4,6 @@ local M = {}
 M.general = {
     n = {
         [":"] = { ":", "enter command mode", opts = { nowait = true } },
-        ["'"] = { "<cmd>Telescope marks<CR>", "marks" },
-        ['"'] = { "<cmd>Telescope registers<CR>", "registers" },
 
         ["<leader>v"] = { ":Nvdash <CR>", "back home" },
         ["<leader>q"] = { ":q<CR>", "quit" },
