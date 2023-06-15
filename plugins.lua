@@ -34,12 +34,6 @@ local plugins = {
             { "andymass/vim-matchup" },
             { "nvim-treesitter/nvim-treesitter-textobjects" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
-            {
-                "nvim-treesitter/nvim-treesitter-context",
-                config = function()
-                    require("treesitter-context").setup()
-                end,
-            },
         },
     },
     {
