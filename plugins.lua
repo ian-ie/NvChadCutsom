@@ -70,12 +70,25 @@ local plugins = {
         cmd = "LazyGit",
     },
     {
-        "nvim-telescope/telescope-project.nvim",
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                manual_mode = false,
+                detection_methods = { "lsp", "pattern" },
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+                ignore_lsp = { "null-ls", "copilot" },
+                exclude_dirs = {},
+                show_hidden = false,
+                silent_chdir = true,
+                scope_chdir = "global",
+                datapath = vim.fn.stdpath "data",
+            }
+        end,
     },
     {
         "nvim-telescope/telescope.nvim",
         opts = {
-            extensions_list = { "themes", "terms", "project" },
+            extensions_list = { "themes", "terms", "projects" },
         },
     },
     {
@@ -230,24 +243,24 @@ local plugins = {
     { "folke/neodev.nvim" },
     {
         "ian-ie/LeetCode.nvim",
-        dir = "/root/LeetCode.nvim/",
+        dir = "/mnt/d/work/LeetCode.nvim/",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
+            "nvim-telescope/telescope.nvim",
         },
         config = function()
-            require("leetcode").setup({})
+            require("leetcode").setup {}
         end,
         keys = {
-            {"<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode"},
-            {"<leader>Ll", "<cmd>LCList<cr>", desc = "problem list"},
-            {"<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info"},
-            {"<leader>Ld", "<cmd>LCDay<cr>", desc = "problem of day"},
-            {"<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template"},
-            {"<leader>Lt", "<cmd>LCTest<cr>", desc = "test"},
-            {"<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit"}
-        }
-    }
+            { "<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode" },
+            { "<leader>Ll", "<cmd>LCList<cr>", desc = "problem list" },
+            { "<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info" },
+            { "<leader>Ld", "<cmd>LCDay<cr>", desc = "problem of day" },
+            { "<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template" },
+            { "<leader>Lt", "<cmd>LCTest<cr>", desc = "test" },
+            { "<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit" },
+        },
+    },
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
