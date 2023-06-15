@@ -2,9 +2,7 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-
     -- Override plugin definition options
-
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -31,8 +29,42 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter",
         opts = overrides.treesitter,
+        dependencies = {
+            { "p00f/nvim-ts-rainbow" },
+            { "andymass/vim-matchup" },
+            { "nvim-treesitter/nvim-treesitter-textobjects" },
+            { "JoosepAlviste/nvim-ts-context-commentstring" },
+            {
+                "nvim-treesitter/nvim-treesitter-context",
+                config = function()
+                    require("treesitter-context").setup()
+                end,
+            },
+        },
     },
-
+    {
+        "abecodes/tabout.nvim",
+        config = function(_, opts)
+            require("tabout").setup {
+                tabkey = "", -- key to trigger tabout, set to an empty string to disable
+                backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
+                act_as_tab = true, -- shift content if tab out is not possible
+                act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+                enable_backwards = true,
+                completion = true, -- if the tabkey is used in a completion pum
+                tabouts = {
+                    { open = "'", close = "'" },
+                    { open = '"', close = '"' },
+                    { open = "`", close = "`" },
+                    { open = "(", close = ")" },
+                    { open = "[", close = "]" },
+                    { open = "{", close = "}" },
+                },
+                ignore_beginning = true, -- if the cursor is at the beginning of a filled element it will rather tab out than shift the content
+                exclude = {}, -- tabout will ignore these filetypes
+            }
+        end,
+    },
     {
         "nvim-tree/nvim-tree.lua",
         opts = overrides.nvimtree,
@@ -259,6 +291,119 @@ local plugins = {
             { "<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template" },
             { "<leader>Lt", "<cmd>LCTest<cr>", desc = "test" },
             { "<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit" },
+        },
+    },
+    {
+        "kevinhwang91/nvim-ufo",
+        event = "BufRead",
+        dependencies = {
+            { "kevinhwang91/promise-async" },
+            {
+                "luukvbaal/statuscol.nvim",
+                config = function()
+                    local builtin = require "statuscol.builtin"
+                    require("statuscol").setup {
+                        -- foldfunc = "builtin",
+                        -- setopt = true,
+                        relculright = true,
+                        segments = {
+                            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+                            { text = { "%s" }, click = "v:lua.ScSa" },
+                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                        },
+                    }
+                end,
+            },
+        },
+
+        config = function()
+            -- Fold options
+            vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+            vim.o.foldcolumn = "1" -- '0' is not bad
+            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+            vim.api.nvim_command "highlight AdCustomFold guifg=#6699CC"
+
+            require("ufo").setup {
+                fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+                    local newVirtText = {}
+                    local suffix = ("  %d "):format(endLnum - lnum)
+                    local sufWidth = vim.fn.strdisplaywidth(suffix)
+                    local targetWidth = width - sufWidth
+                    local curWidth = 0
+
+                    for _, chunk in ipairs(virtText) do
+                        local chunkText = chunk[1]
+                        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                        if targetWidth > curWidth + chunkWidth then
+                            table.insert(newVirtText, chunk)
+                        else
+                            chunkText = truncate(chunkText, targetWidth - curWidth)
+                            local hlGroup = chunk[2]
+                            table.insert(newVirtText, { chunkText, hlGroup })
+                            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                            -- str width returned from truncate() may less than 2nd argument, need padding
+                            if curWidth + chunkWidth < targetWidth then
+                                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+                            end
+                            break
+                        end
+                        curWidth = curWidth + chunkWidth
+                    end
+
+                    -- Second line
+                    local lines = vim.api.nvim_buf_get_lines(0, lnum, lnum + 1, false)
+                    local secondLine = nil
+                    if #lines == 1 then
+                        secondLine = lines[1]
+                    elseif #lines > 1 then
+                        secondLine = lines[2]
+                    end
+                    if secondLine ~= nil then
+                        table.insert(newVirtText, { secondLine, "AdCustomFold" })
+                    end
+
+                    table.insert(newVirtText, { suffix, "MoreMsg" })
+
+                    return newVirtText
+                end,
+            }
+        end,
+        keys = {
+            {
+                "zR",
+                function()
+                    require("ufo").openAllFolds()
+                end,
+            },
+            {
+                "zM",
+                function()
+                    require("ufo").closeAllFolds()
+                end,
+            },
+            {
+                "Z",
+                function()
+                    local winid = require("ufo").peekFoldedLinesUnderCursor()
+                    if not winid then
+                        vim.lsp.buf.hover()
+                    end
+                end,
+            },
+            {
+                "zr",
+                function()
+                    require("ufo").openFoldsExceptKinds()
+                end,
+            },
+            {
+                "zm",
+                function()
+                    require("ufo").closeFoldsWith()
+                end,
+            },
         },
     },
     -- To make a plugin not be loaded
