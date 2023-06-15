@@ -11,7 +11,7 @@ M.general = {
         ["<leader>H"] = { ":cd ~/.config/nvim/lua/ | edit custom/chadrc.lua <CR>", "modify config" },
         ["<leader>o"] = { "<cmd>SymbolsOutline<CR>", "outline" },
         ["<leader>gg"] = { "<cmd> LazyGit <CR>", "open Lazygit" },
-        ["<leader>fp"] = { "<cmd> Telescope project <CR>", "find project" },
+        ["<leader>fp"] = { "<cmd> Telescope projects <CR>", "find project" },
         ["<leader>cd"] = { ":cd %:h <CR>", "cd curfile dir" },
 
         ["<leader>lo"] = { ":lua vim.diagnostic.config({ virtual_text = true})<CR>", "open virtual" },
