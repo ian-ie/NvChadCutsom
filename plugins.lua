@@ -14,6 +14,24 @@ local plugins = {
                     require "custom.configs.null-ls"
                 end,
             },
+
+            {
+                "rmagatti/goto-preview",
+                config = function()
+                    require("goto-preview").setup {
+                        default_mappings = true,
+                        post_open_hook = function(_, win)
+                            -- Close the current preview window with <Esc>
+                            vim.keymap.set("n", "<Esc>", function()
+                                vim.api.nvim_win_close(win, true)
+                            end, { buffer = true })
+                            vim.keymap.set("n", "q", function()
+                                vim.api.nvim_win_close(win, true)
+                            end, { buffer = true })
+                        end,
+                    }
+                end,
+            },
         },
         config = function()
             require "plugins.configs.lspconfig"
@@ -38,6 +56,25 @@ local plugins = {
         },
     },
     {
+        "RRethy/nvim-treesitter-textsubjects",
+        event = "VeryLazy",
+        after = "nvim-treesitter",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                textsubjects = {
+                    enable = true,
+                    prev_selection = ",",
+                    keymaps = {
+                        ["."] = "textsubjects-smart",
+                        [";"] = "textsubjects-container-outer",
+                        ["i;"] = "textsubjects-container-inner",
+                    },
+                },
+            }
+        end,
+    },
+    {
         "abecodes/tabout.nvim",
         opts = others.tabout,
     },
@@ -54,6 +91,30 @@ local plugins = {
             require("better_escape").setup()
         end,
     },
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     dependencies = { "rcarriga/nvim-notify", "MunifTanjim/nui.nvim" },
+    --     opts = others.noice,
+    --     keys = {
+    --         { "<leader>ns", "<cmd>Notifications<cr>", desc = "show notifications" },
+    --         { "<leader>nt", "<cmd>Notice telescope<cr>", desc = "show notice in telescope" },
+    --         { "<leader>nm", "<cmd>messages<cr>", desc = "show message" },
+    --         { "<leader>nd", "<cmd>NoiceDisable<cr>", desc = "NoiceDisable" },
+    --         { "<leader>ne", "<cmd>NoiceEnable<cr>", desc = "NoiceEnable" },
+    --     },
+    -- },
+    {
+        "rcarriga/nvim-notify",
+        lazy = true,
+        event = "VeryLazy",
+        config = function()
+            local notify = require "notify"
+            notify.setup(others.notify)
+            vim.notify = notify
+        end,
+    },
+
     {
         "folke/which-key.nvim",
         config = function(_, opts)
@@ -70,6 +131,8 @@ local plugins = {
                 t = { name = "trouble" },
                 l = { name = "lsp" },
                 L = { name = "leetcode" },
+                s = { name = "spectre" },
+                n = { name = "noice" },
             }, { prefix = "<leader>" })
         end,
     },
@@ -190,7 +253,7 @@ local plugins = {
             { "<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode" },
             { "<leader>Ll", "<cmd>LCList<cr>", desc = "problem list" },
             { "<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info" },
-            { "<leader>Ld", "<cmd>LCDay<cr>", desc = "problem of day" },
+            { "<leader>Ld", "<cmd>LCToday<cr>", desc = "problem of day" },
             { "<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template" },
             { "<leader>Lt", "<cmd>LCTest<cr>", desc = "test" },
             { "<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit" },
@@ -229,11 +292,89 @@ local plugins = {
             require("ufo").setup(others.ufo)
         end,
         keys = {
-            { "zR", function() require("ufo").openAllFolds() end, desc = "open all folds", },
-            { "zM", function() require("ufo").closeAllFolds() end, desc = "colse all folds", },
-            { "Z", function() local winid = require("ufo").peekFoldedLinesUnderCursor() if not winid then vim.lsp.buf.hover() end end, desc = "preview fold", },
-            { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "open same level fold", },
-            { "zm", function() require("ufo").closeFoldsWith() end, desc = "close same level fold", },
+            {
+                "zR",
+                function()
+                    require("ufo").openAllFolds()
+                end,
+                desc = "open all folds",
+            },
+            {
+                "zM",
+                function()
+                    require("ufo").closeAllFolds()
+                end,
+                desc = "colse all folds",
+            },
+            {
+                "Z",
+                function()
+                    local winid = require("ufo").peekFoldedLinesUnderCursor()
+                    if not winid then
+                        vim.lsp.buf.hover()
+                    end
+                end,
+                desc = "preview fold",
+            },
+            {
+                "zr",
+                function()
+                    require("ufo").openFoldsExceptKinds()
+                end,
+                desc = "open same level fold",
+            },
+            {
+                "zm",
+                function()
+                    require("ufo").closeFoldsWith()
+                end,
+                desc = "close same level fold",
+            },
+        },
+    },
+    {
+        "booperlv/nvim-gomove",
+        event = "VeryLazy",
+        config = function()
+            require("gomove").setup {
+                -- whether or not to map default key bindings, (true/false)
+                map_defaults = true,
+                -- whether or not to reindent lines moved vertically (true/false)
+                reindent = true,
+                -- whether or not to undojoin same direction moves (true/false)
+                undojoin = true,
+                -- whether to not to move past end column when moving blocks horizontally, (true/false)
+                move_past_end_col = false,
+            }
+        end,
+    },
+    {
+        "ethanholz/nvim-lastplace",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-lastplace").setup {
+                lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+                lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+                lastplace_open_folds = true,
+            }
+        end,
+    },
+    {
+        "windwp/nvim-spectre",
+        cmd = { "Spectre" },
+        config = function()
+            require("spectre").setup()
+        end,
+        keys = {
+            { "<leader>so", "<cmd>lua require('spectre').open()<cr>", desc = "find in workspace" },
+            { "<leader>sf", "<cmd>lua require('spectre').open_file_search()<cr>", desc = "find in file" },
+            {
+                "<leader>sw",
+                "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
+                desc = "find work in visual",
+                mode = "v",
+            },
+            { "<leader>sv", "<cmd>lua require('spectre').open_visual()<cr>", desc = "find in visual", mode = "v" },
         },
     },
     -- To make a plugin not be loaded

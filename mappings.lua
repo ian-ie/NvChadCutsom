@@ -53,15 +53,10 @@ M.general = {
         ["<leader>rs"] = { "<Plug>SnipRun", "snip" },
         ["<leader>rc"] = { "<Plug>SnipClose", "close" },
         ["<leader>rr"] = { "<Plug>SnipReset", "reset" },
-
-        ["<A-j>"] = { ":move +1 <CR>", "move down" },
-        ["<A-k>"] = { ":move -2 <CR>", "move up" },
     },
 
     i = {
         ["<C-s>"] = { "<ESC> :w<CR>", "save and exit insert mode" },
-        ["<A-j>"] = { "<ESC> :move +1 <CR>", "move down" },
-        ["<A-k>"] = { "<ESC> :move -2 <CR>", "move up" },
     },
 }
 

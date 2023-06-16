@@ -27,6 +27,8 @@ M.treesitter = {
                 ["if"] = "@function.inner",
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
+                ["id"] = "@conditional.inner",
+                ["ad"] = "@conditional.outer",
             },
         },
         move = {
@@ -35,6 +37,7 @@ M.treesitter = {
             goto_next_start = {
                 ["]["] = "@function.outer",
                 ["]m"] = "@class.outer",
+                ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
             },
             goto_next_end = {
                 ["]]"] = "@function.outer",
@@ -47,6 +50,12 @@ M.treesitter = {
             goto_previous_end = {
                 ["[]"] = "@function.outer",
                 ["[M"] = "@class.outer",
+            },
+            goto_next = {
+                ["]d"] = "@conditional.outer",
+            },
+            goto_previous = {
+                ["[d"] = "@conditional.outer",
             },
         },
     },
