@@ -35,8 +35,6 @@ M.general = {
         },
 
         -- leader t
-        ["<leader>tp"] = { "<Plug>TranslateWV", "pop" },
-        ["<leader>ts"] = { "<Plug>TranslateRV", "replace" },
         ["<leader>tt"] = { "<cmd>TroubleToggle<cr>", "trouble" },
         ["<leader>tw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
         ["<leader>td"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
@@ -63,10 +61,10 @@ M.general = {
 -- more keybinds!
 M.nvimtree = {
     n = {
-        -- toggle
-        ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
-
         -- focus
+        ["<C-n>"] = { "<cmd> NvimTreeFocus <CR>", "toggle nvimtree" },
+
+        -- toggle
         ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
     },
 }

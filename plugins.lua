@@ -129,6 +129,7 @@ local plugins = {
                 r = { name = "sniprun" },
                 j = { name = "jump" },
                 t = { name = "trouble" },
+                T = { name = "translate" },
                 l = { name = "lsp" },
                 L = { name = "leetcode" },
                 s = { name = "spectre" },
@@ -169,7 +170,16 @@ local plugins = {
     -- 翻译
     {
         "voldikss/vim-translator",
-        lazy = false,
+        cmd = "TranslateW",
+        keys = {
+            { "<leader>Tw", "<cmd>TranslateW<cr>", desc = "window", mode = { "n", "v" } },
+            { "<leader>Tq", "<cmd>Translateq<cr>", desc = "cmdline", mode = { "n", "v" } },
+            { "<leader>Te", "<cmd>Translate --target_lang=en <cr>", desc = "cmdline", mode = { "n", "v" } },
+            { "<leader>Tr", "<cmd>TranslateR<cr>", desc = "replace", mode = { "n", "v" } },
+            { "<leader>Tx", "<cmd>TranslateX<cr>", desc = "clipboard" },
+            { "<leader>Th", "<cmd>TranslateH<cr>", desc = "history" },
+            { "<leader>Tl", "<cmd>TranslateL<cr>", desc = "log" },
+        },
     },
     -- 代码片段运行
     {
@@ -292,44 +302,11 @@ local plugins = {
             require("ufo").setup(others.ufo)
         end,
         keys = {
-            {
-                "zR",
-                function()
-                    require("ufo").openAllFolds()
-                end,
-                desc = "open all folds",
-            },
-            {
-                "zM",
-                function()
-                    require("ufo").closeAllFolds()
-                end,
-                desc = "colse all folds",
-            },
-            {
-                "Z",
-                function()
-                    local winid = require("ufo").peekFoldedLinesUnderCursor()
-                    if not winid then
-                        vim.lsp.buf.hover()
-                    end
-                end,
-                desc = "preview fold",
-            },
-            {
-                "zr",
-                function()
-                    require("ufo").openFoldsExceptKinds()
-                end,
-                desc = "open same level fold",
-            },
-            {
-                "zm",
-                function()
-                    require("ufo").closeFoldsWith()
-                end,
-                desc = "close same level fold",
-            },
+            { "zR", function() require("ufo").openAllFolds() end, desc = "open all folds", },
+            { "zM", function() require("ufo").closeAllFolds() end, desc = "colse all folds", },
+            { "Z", function() local winid = require("ufo").peekFoldedLinesUnderCursor() if not winid then vim.lsp.buf.hover() end end, desc = "preview fold", },
+            { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "open same level fold", },
+            { "zm", function() require("ufo").closeFoldsWith() end, desc = "close same level fold", },
         },
     },
     {
@@ -368,14 +345,13 @@ local plugins = {
         keys = {
             { "<leader>so", "<cmd>lua require('spectre').open()<cr>", desc = "find in workspace" },
             { "<leader>sf", "<cmd>lua require('spectre').open_file_search()<cr>", desc = "find in file" },
-            {
-                "<leader>sw",
-                "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
-                desc = "find work in visual",
-                mode = "v",
-            },
+            { "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", desc = "find work in visual", mode = "v", },
             { "<leader>sv", "<cmd>lua require('spectre').open_visual()<cr>", desc = "find in visual", mode = "v" },
         },
+    },
+    {
+        "mg979/vim-visual-multi",
+        event = "VeryLazy",
     },
     -- To make a plugin not be loaded
     -- {
