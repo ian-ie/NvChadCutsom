@@ -48,7 +48,7 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         opts = overrides.treesitter,
         dependencies = {
-            { "p00f/nvim-ts-rainbow" },
+            { "HiPhish/nvim-ts-rainbow2" } ,
             { "andymass/vim-matchup" },
             { "nvim-treesitter/nvim-treesitter-textobjects" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },

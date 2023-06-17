@@ -61,18 +61,22 @@ M.treesitter = {
     },
     rainbow = {
         enable = true,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        colors = {
-            "#E16C75",
-            "#E5C07B",
-            "#98C379",
-            "#56B6C2",
-            "#61AFEF",
-            "#C678DD",
-            "#E16C75",
-        },
+        vim.api.nvim_set_hl(0, "TSRainbow1", { fg = "#E16C75" }),
+        vim.api.nvim_set_hl(0, "TSRainbow2", { fg = "#39C5BB" }),
+        vim.api.nvim_set_hl(0, "TSRainbow3", { fg = "#99DD00" }),
+        vim.api.nvim_set_hl(0, "TSRainbow4", { fg = "#EFA4A2" }),
+        vim.api.nvim_set_hl(0, "TSRainbow5", { fg = "#66CCFF" }),
+        vim.api.nvim_set_hl(0, "TSRainbow6", { fg = "#FCD97D" }),
+        vim.api.nvim_set_hl(0, "TSRainbow7", { fg = "#E1B1AB" }),
+        hlgroups = {
+            "TSRainbow1",
+            "TSRainbow2",
+            "TSRainbow3",
+            "TSRainbow4",
+            "TSRainbow5",
+            "TSRainbow6",
+            "TSRainbow7",
+        }
         -- colors = {}, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
     },
