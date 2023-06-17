@@ -93,30 +93,30 @@ local plugins = {
             require("better_escape").setup()
         end,
     },
-    -- {
-    --     "folke/noice.nvim",
-    --     event = "VeryLazy",
-    --     dependencies = { "rcarriga/nvim-notify", "MunifTanjim/nui.nvim" },
-    --     opts = others.noice,
-    --     keys = {
-    --         { "<leader>ns", "<cmd>Notifications<cr>", desc = "show notifications" },
-    --         { "<leader>nt", "<cmd>Notice telescope<cr>", desc = "show notice in telescope" },
-    --         { "<leader>nm", "<cmd>messages<cr>", desc = "show message" },
-    --         { "<leader>nd", "<cmd>NoiceDisable<cr>", desc = "NoiceDisable" },
-    --         { "<leader>ne", "<cmd>NoiceEnable<cr>", desc = "NoiceEnable" },
-    --     },
-    -- },
     {
-        "rcarriga/nvim-notify",
-        lazy = true,
+        "folke/noice.nvim",
         event = "VeryLazy",
-        config = function()
-            local notify = require "notify"
-            notify.setup(others.notify)
-            vim.notify = notify
-        end,
+        dependencies = { "rcarriga/nvim-notify", "MunifTanjim/nui.nvim" },
+        opts = others.noice,
+        keys = {
+            { "<leader>ns", "<cmd>Notifications<cr>", desc = "show notifications" },
+            { "<leader>nt", "<cmd>Notice telescope<cr>", desc = "show notice in telescope" },
+            { "<leader>nm", "<cmd>messages<cr>", desc = "show message" },
+            { "<leader>nd", "<cmd>NoiceDisable<cr>", desc = "NoiceDisable" },
+            { "<leader>ne", "<cmd>NoiceEnable<cr>", desc = "NoiceEnable" },
+        },
     },
-
+    -- {
+    --     "rcarriga/nvim-notify",
+    --     lazy = true,
+    --     event = "VeryLazy",
+    --     config = function()
+    --         local notify = require "notify"
+    --         notify.setup(others.notify)
+    --         vim.notify = notify
+    --     end,
+    -- },
+    --
     {
         "folke/which-key.nvim",
         config = function(_, opts)
@@ -376,6 +376,25 @@ local plugins = {
             }
         end
     },
+    {
+        "xiyaowong/transparent.nvim",
+        lazy = false,
+        config = function (_, opts)
+            require("transparent").setup({
+                vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true)),
+                groups = { -- table: default groups
+                    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+                    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+                    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+                    'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+                },
+                extra_groups = {
+                    "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+                }, -- table: additional groups that should be cleared
+                exclude_groups = {}, -- table: groups you don't want to clear
+            })
+        end
+    }
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",

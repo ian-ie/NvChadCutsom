@@ -1,38 +1,30 @@
 local M = {}
 
--- M.noice = {
---     lsp = {
---         progress = {
---             enabled = false,
---         },
---     },
---     view = {
---         cmdline = {
---             position = {
---                 row = "42%",
---                 col = "50%"
---             }
---         }
---     },
---     presets = {
---         bottom_search = false,
---         -- command_palette = true,
---         long_message_to_split = true,
---         inc_rename = false,
---         lsp_doc_border = true,
---     },
---     messages = {
---         enabled = true,
---         view = "notify",
---         view_error = "notify",
---         view_warn = "notify",
---         view_history = "messages",
---         view_search = "virtualtext",
---     },
---     health = {
---         checker = false,
---     },
--- }
+M.noice = {
+    lsp = {
+        progress = {
+            enabled = true,
+        },
+    },
+    presets = {
+        bottom_search = false,
+        -- command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = true,
+    },
+    messages = {
+        enabled = true,
+        view = "notify",
+        view_error = "notify",
+        view_warn = "notify",
+        view_history = "messages",
+        view_search = "virtualtext",
+    },
+    health = {
+        checker = false,
+    },
+}
 
 M.notify = {
     -- "fade", "slide", "fade_in_slide_out", "static"
