@@ -192,7 +192,13 @@ local plugins = {
     -- 跳转
     {
         "ggandor/leap.nvim",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        config = function ()
+            require("leap").setup({
+                require('leap').add_default_mappings()
+            })
+            -- code
+        end
     },
     -- f 增强
     {

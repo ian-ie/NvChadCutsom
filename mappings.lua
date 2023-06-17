@@ -42,10 +42,6 @@ M.general = {
         ["<leader>tl"] = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
         ["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 
-        -- leader j
-        ["<leader>jw"] = { "<Plug>(leap-forward-to)", "forward" },
-        ["<leader>jb"] = { "<Plug>(leap-backward-to)", "backward" },
-
         -- leader r
         ["<leader>rf"] = { "<cmd>%SnipRun<cr>", "file" },
         ["<leader>rs"] = { "<Plug>SnipRun", "snip" },
