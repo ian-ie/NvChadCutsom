@@ -366,12 +366,12 @@ local plugins = {
                 ["Find Under"]         = "<C-d>",
                 ["Find Subword Under"] = "<C-d>" ,
                 ["Select All"]         = "<C-a>" ,
-                ["Select h"]           = "<C-h>",
-                ["Select l"]           = "<C-l>",
-                ["Add Cursor Up"]      = "<C-k>",
-                ["Add Cursor Down"]    = "<C-j>",
+                -- ["Select h"]           = "<C-h>",
+                -- ["Select l"]           = "<C-l>",
+                ["Add Cursor Up"]      = "<C-q>",
+                ["Add Cursor Down"]    = "<C-e>",
                 ["Add Cursor At Pos"]  = "<C-x>" ,
-                ["Add Cursor At Word"] = "<C-w>" ,
+                -- ["Add Cursor At Word"] = "<C-w>" ,
                 ["Remove Region"]      = "q"     ,
             }
         end
