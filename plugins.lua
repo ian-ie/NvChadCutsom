@@ -45,13 +45,10 @@ local plugins = {
         opts = overrides.mason,
     },
     {
-		"p00f/nvim-ts-rainbow",
-		after = "nvim-treesitter",
-	},
-    {
         "nvim-treesitter/nvim-treesitter",
         opts = overrides.treesitter,
         dependencies = {
+            { "p00f/nvim-ts-rainbow" },
             { "andymass/vim-matchup" },
             { "nvim-treesitter/nvim-treesitter-textobjects" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -60,7 +57,6 @@ local plugins = {
     {
         "RRethy/nvim-treesitter-textsubjects",
         event = "VeryLazy",
-        after = "nvim-treesitter",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
             require("nvim-treesitter.configs").setup {
