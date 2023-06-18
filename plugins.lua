@@ -131,6 +131,7 @@ local plugins = {
                 l = { name = "lsp" },
                 L = { name = "leetcode" },
                 s = { name = "spectre" },
+                m = { name = "marks" },
                 n = { name = "noice" },
             }, { prefix = "<leader>" })
         end,
@@ -141,7 +142,7 @@ local plugins = {
     },
     {
         "ahmedkhalf/project.nvim",
-        config = function(_, opts)
+        config = function()
             require("project_nvim").setup {
                 manual_mode = false,
                 detection_methods = { "lsp", "pattern" },
@@ -373,9 +374,21 @@ local plugins = {
         end
     },
     {
+        "chentoast/marks.nvim",
+        opts = others.marks,
+        event = "VeryLazy",
+        keys = {
+            {"<leader>mn", "<Plug>(Marks-next)", desc = "next"},
+            {"<leader>ml", "<Plug>(Marks-prev)", desc = "last"},
+            {"<leader>mp", "<Plug>(Marks-preview)", desc = "preview"},
+            {"<leader>mb", "<cmd>MarksListBuf<cr>", desc = "buf marks"},
+            {"<leader>mg", "<cmd>MarksListGlobal<cr>", desc = "global marks"},
+        }
+    },
+    {
         "xiyaowong/transparent.nvim",
         lazy = false,
-        config = function (_, opts)
+        config = function ()
             require("transparent").setup({
                 vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true)),
                 groups = { -- table: default groups

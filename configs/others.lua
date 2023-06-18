@@ -48,7 +48,6 @@ M.notify = {
     level = "TRACE",
 }
 
-
 M.tabout = {
     tabkey = "", -- key to trigger tabout, set to an empty string to disable
     backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
@@ -80,6 +79,24 @@ M.flit = {
     labeled_modes = "v",
     multiline = true,
     opts = {},
+}
+
+M.marks = {
+    default_mappings = {},
+    builtin_marks = { ".", "<", ">", "^" },
+    excluded_filetypes = {
+        "qf",
+        "NvimTree",
+        "toggleterm",
+        "TelescopePrompt",
+        "alpha",
+        "netrw",
+    },
+    bookmark_0 = {
+        sign = "",
+        virt_text = "mark group 1",
+        annotate = false,
+    },
 }
 
 M.symbols_outline = {
@@ -152,7 +169,7 @@ M.ufo = {
     -- Fold options
     fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
-        local suffix = ("  %d "):format(endLnum - lnum)
+        local suffix = (" ↙ %d "):format(endLnum - lnum)
         local sufWidth = vim.fn.strdisplaywidth(suffix)
         local targetWidth = width - sufWidth
         local curWidth = 0
