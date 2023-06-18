@@ -64,10 +64,10 @@ M.treesitter = {
         vim.api.nvim_set_hl(0, "TSRainbow1", { fg = "#E16C75" }),
         vim.api.nvim_set_hl(0, "TSRainbow2", { fg = "#39C5BB" }),
         vim.api.nvim_set_hl(0, "TSRainbow3", { fg = "#99DD00" }),
-        vim.api.nvim_set_hl(0, "TSRainbow4", { fg = "#EFA4A2" }),
+        vim.api.nvim_set_hl(0, "TSRainbow4", { fg = "#FCD97D" }),
         vim.api.nvim_set_hl(0, "TSRainbow5", { fg = "#66CCFF" }),
-        vim.api.nvim_set_hl(0, "TSRainbow6", { fg = "#FCD97D" }),
-        vim.api.nvim_set_hl(0, "TSRainbow7", { fg = "#E1B1AB" }),
+        vim.api.nvim_set_hl(0, "TSRainbow6", { fg = "#E1B1AB" }),
+        vim.api.nvim_set_hl(0, "TSRainbow7", { fg = "#EFA4A2" }),
         hlgroups = {
             "TSRainbow1",
             "TSRainbow2",
