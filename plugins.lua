@@ -388,13 +388,13 @@ local plugins = {
     {
         "chentoast/marks.nvim",
         opts = others.marks,
-        event = "VeryLazy",
         keys = {
             {"<leader>mn", "<Plug>(Marks-next)", desc = "next"},
             {"<leader>ml", "<Plug>(Marks-prev)", desc = "last"},
             {"<leader>mp", "<Plug>(Marks-preview)", desc = "preview"},
             {"<leader>mb", "<cmd>MarksListBuf<cr>", desc = "buf marks"},
             {"<leader>mg", "<cmd>MarksListGlobal<cr>", desc = "global marks"},
+            {"<leader>mc", "<cmd>MarksToggleSigns<cr>", desc = "close"},
         }
     },
     -- To make a plugin not be loaded
