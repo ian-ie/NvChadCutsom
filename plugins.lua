@@ -172,8 +172,7 @@ local plugins = {
         cmd = "TranslateW",
         keys = {
             { "<leader>Tw", "<cmd>TranslateW<cr>", desc = "window", mode = { "n", "v" } },
-            { "<leader>Tq", "<cmd>Translateq<cr>", desc = "cmdline", mode = { "n", "v" } },
-            { "<leader>Te", "<cmd>Translate --target_lang=en <cr>", desc = "cmdline", mode = { "n", "v" } },
+            { "<leader>Te", "<cmd>Translate --target_lang=en <cr>", desc = "to en", "v" },
             { "<leader>Tr", "<cmd>TranslateR<cr>", desc = "replace", mode = { "n", "v" } },
             { "<leader>Tx", "<cmd>TranslateX<cr>", desc = "clipboard" },
             { "<leader>Th", "<cmd>TranslateH<cr>", desc = "history" },
@@ -256,7 +255,6 @@ local plugins = {
     { "folke/neodev.nvim" },
     {
         "ian-ie/LeetCode.nvim",
-        dir = "/mnt/d/work/LeetCode.nvim/",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
@@ -265,11 +263,12 @@ local plugins = {
             require("leetcode").setup {}
         end,
         keys = {
-            { "<leader>Lg", "<cmd>LCLogin<cr>", desc = "login leetcode" },
-            { "<leader>Ll", "<cmd>LCList<cr>", desc = "problem list" },
-            { "<leader>Li", "<cmd>LCInfo<cr>", desc = "problem info" },
-            { "<leader>Ld", "<cmd>LCToday<cr>", desc = "problem of day" },
-            { "<leader>Lr", "<cmd>LCReset<cr>", desc = "rest code template" },
+            { "<leader>Lg", "<cmd>LCLogin<cr>", desc = "login" },
+            { "<leader>Ll", "<cmd>LCList<cr>", desc = "list" },
+            { "<leader>Li", "<cmd>LCInfo<cr>", desc = "info" },
+            { "<leader>Ld", "<cmd>LCToday<cr>", desc = "day" },
+            { "<leader>Lr", "<cmd>LCReset<cr>", desc = "reset" },
+            { "<leader>Lc", "<cmd>LCClose<cr>", desc = "close" },
             { "<leader>Lt", "<cmd>LCTest<cr>", desc = "test" },
             { "<leader>Ls", "<cmd>LCSubmit<cr>", desc = "submit" },
         },
@@ -342,6 +341,12 @@ local plugins = {
         end,
     },
     {
+        "kevinhwang91/nvim-bqf",
+        ft="qf",
+        dependencies="nvim-treesitter",
+        opts = others.bqf
+    },
+    {
         "windwp/nvim-spectre",
         cmd = { "Spectre" },
         config = function()
@@ -385,25 +390,6 @@ local plugins = {
             {"<leader>mg", "<cmd>MarksListGlobal<cr>", desc = "global marks"},
         }
     },
-    {
-        "xiyaowong/transparent.nvim",
-        lazy = false,
-        config = function ()
-            require("transparent").setup({
-                vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true)),
-                groups = { -- table: default groups
-                    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-                    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-                    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-                    'SignColumn', 'CursorLineNr', 'EndOfBuffer',
-                },
-                extra_groups = {
-                    "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
-                }, -- table: additional groups that should be cleared
-                exclude_groups = {}, -- table: groups you don't want to clear
-            })
-        end
-    }
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
