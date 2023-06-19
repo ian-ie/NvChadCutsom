@@ -74,7 +74,14 @@ local plugins = {
     },
     {
         "abecodes/tabout.nvim",
+        event = "InsertEnter",
+        dependencies ={
+            "nvim-treesitter/nvim-treesitter",
+            "L3MON4D3/LuaSnip",
+            "hrsh7th/nvim-cmp",
+        },
         opts = others.tabout,
+
     },
     {
         "nvim-tree/nvim-tree.lua",
@@ -343,7 +350,7 @@ local plugins = {
     {
         "kevinhwang91/nvim-bqf",
         ft="qf",
-        dependencies="nvim-treesitter",
+        dependencies="nvim-treesitter/nvim-treesitter",
         opts = others.bqf
     },
     {
