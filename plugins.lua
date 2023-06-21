@@ -166,7 +166,7 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         opts = {
-            extensions_list = { "themes", "terms", "projects" },
+            extensions_list = { "themes", "terms", "projects" , "find_template"},
         },
     },
     {
@@ -385,6 +385,14 @@ local plugins = {
             }
         end
     },
+    {'glepnir/template.nvim',
+        cmd = {'Template','TemProject'},
+        config = function()
+            require('template').setup({
+                temp_dir = "~/.config/nvim/lua/custom/template/",
+                author = "ianie"
+            })
+    end},
     {
         "chentoast/marks.nvim",
         opts = others.marks,
