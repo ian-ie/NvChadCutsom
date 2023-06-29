@@ -386,7 +386,7 @@ local plugins = {
         end
     },
     {'glepnir/template.nvim',
-        cmd = {'Template','TemProject'},
+        cmd = {'Template'},
         config = function()
             require('template').setup({
                 temp_dir = "~/.config/nvim/lua/custom/template/",

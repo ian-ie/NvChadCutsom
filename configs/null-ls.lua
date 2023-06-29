@@ -8,8 +8,9 @@ local b = null_ls.builtins
 
 local sources = {
 
-    -- webdev stuff
-    b.formatting.deno_fmt.with { extra_args = { "--indent-width", 4 } }, -- choosed deno for ts/js files cuz its very fast!
+    b.formatting.fixjson.with { extra_args = {"-i 4"}},
+
+    b.formatting.prettier.with { filetypes = { "javascript", "typescript" }, extra_args = { "--tab-width=4" } },
 
     -- Lua
     b.formatting.stylua.with { extra_args = { "--indent-width", 4 } },
