@@ -132,7 +132,6 @@ local plugins = {
                 g = { name = "git" },
                 b = { name = "buff" },
                 r = { name = "sniprun" },
-                j = { name = "jump" },
                 t = { name = "trouble" },
                 T = { name = "translate" },
                 l = { name = "lsp" },
