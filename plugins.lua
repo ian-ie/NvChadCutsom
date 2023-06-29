@@ -14,7 +14,6 @@ local plugins = {
                     require "custom.configs.null-ls"
                 end,
             },
-
             {
                 "rmagatti/goto-preview",
                 config = function()
@@ -52,25 +51,23 @@ local plugins = {
             { "andymass/vim-matchup" },
             { "nvim-treesitter/nvim-treesitter-textobjects" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
+            {
+                "RRethy/nvim-treesitter-textsubjects",
+                config = function()
+                    require("nvim-treesitter.configs").setup {
+                        textsubjects = {
+                            enable = true,
+                            prev_selection = ",",
+                            keymaps = {
+                                ["."] = "textsubjects-smart",
+                                [";"] = "textsubjects-container-outer",
+                                ["i;"] = "textsubjects-container-inner",
+                            },
+                        },
+                    }
+                end,
+            },
         },
-    },
-    {
-        "RRethy/nvim-treesitter-textsubjects",
-        event = "VeryLazy",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            require("nvim-treesitter.configs").setup {
-                textsubjects = {
-                    enable = true,
-                    prev_selection = ",",
-                    keymaps = {
-                        ["."] = "textsubjects-smart",
-                        [";"] = "textsubjects-container-outer",
-                        ["i;"] = "textsubjects-container-inner",
-                    },
-                },
-            }
-        end,
     },
     {
         "abecodes/tabout.nvim",
