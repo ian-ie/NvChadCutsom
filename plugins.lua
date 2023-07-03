@@ -37,7 +37,7 @@ local plugins = {
             require "custom.configs.lspconfig"
         end, -- Override to setup mason-lspconfig
     },
-
+    {"nanotee/sqls.nvim"},
     -- override plugin configs
     {
         "williamboman/mason.nvim",
@@ -269,6 +269,7 @@ local plugins = {
             { "<leader>Lg", "<cmd>LCLogin<cr>", desc = "login" },
             { "<leader>Ll", "<cmd>LCList<cr>", desc = "list" },
             { "<leader>Li", "<cmd>LCInfo<cr>", desc = "info" },
+            { "<leader>Lo", "<cmd>LCOpen<cr>", desc = "open" },
             { "<leader>Ld", "<cmd>LCToday<cr>", desc = "day" },
             { "<leader>Lr", "<cmd>LCReset<cr>", desc = "reset" },
             { "<leader>Lc", "<cmd>LCClose<cr>", desc = "close" },
